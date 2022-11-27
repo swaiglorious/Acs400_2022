@@ -34,23 +34,46 @@
        app:layout_constraintStart_toStartOf="parent" />
 
    <com.google.android.material.textfield.TextInputLayout
-       android:layout_width="350dp"
+       android:id="@+id/edt_nida_layout"
+       android:layout_width="match_parent"
        app:layout_constraintTop_toBottomOf="@+id/imageView"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        android:layout_marginTop="32dp"
        android:layout_height="wrap_content"
-       tools:layout_editor_absoluteX="20dp"
-       tools:layout_editor_absoluteY="348dp"
+       android:layout_marginStart="16dp"
+       android:layout_marginEnd="16dp"
        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
       <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/edt_nida"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:hint="Username:"
           android:textColor="@color/black"
-          android:textStyle="italic"
-          android:textSize="19sp"/>
+          android:textSize="19sp"
+          android:textStyle="italic" />
+   </com.google.android.material.textfield.TextInputLayout>
+
+   <com.google.android.material.textfield.TextInputLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/edt_nida_layout"
+       android:layout_marginTop="16dp"
+       android:layout_marginStart="16dp"
+       android:layout_marginEnd="16dp"
+      >
+      <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:id="@+id/edt_code"
+          android:layout_height="wrap_content"
+         android:hint="code"
+         android:textColor="@color/black"
+         android:textSize="19sp"
+         />
    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
