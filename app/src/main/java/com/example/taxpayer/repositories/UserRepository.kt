@@ -7,7 +7,7 @@ import com.example.taxpayer.data.User
 class UserRepository() {
     val allUsers : List<User> = DataManager.allUsers
 
-    fun addUser(user: User){
+    fun get(user: User){
         DataManager.allUsers.add(user)
     }
 

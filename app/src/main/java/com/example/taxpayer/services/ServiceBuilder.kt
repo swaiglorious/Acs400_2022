@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class BasicAuthInterceptor(username: String, password: String): Interceptor {
     private var credentials: String = Credentials.basic(username, password)
@@ -23,12 +24,13 @@ object ServiceBuilder {
 
         val mOkHttpClient = OkHttpClient
             .Builder()
+            .readTimeout(15,TimeUnit.SECONDS)
             .addInterceptor(logger)
             .build()
 
 
         val retrofit: Retrofit = retrofit2.Retrofit.Builder()
-            .baseUrl("https://apiotp.beem.africa/v1/")
+            .baseUrl("http://10.0.2.2:8000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(mOkHttpClient)
             .build()
@@ -39,11 +41,3 @@ object ServiceBuilder {
 
 
 }
-//class ServiceBuilder {
-//    companion object{
-//        val URL : String = "https://apiotp.beem.africa/v1"
-//        val builder : Retrofit.Builder = Retrofit.Builder().baseUrl(URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//        val retrofit : Retrofit = builder.build()
-//    }
-//}
