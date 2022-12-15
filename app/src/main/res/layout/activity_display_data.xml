@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".DisplayDataActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dataLayout"
+        android:orientation="vertical"
+        >
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -116,4 +123,17 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvw_business_name" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvw_no_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Record Found"
+        android:textSize="26sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/dataLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

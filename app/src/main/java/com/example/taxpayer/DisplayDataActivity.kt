@@ -3,10 +3,11 @@ package com.example.taxpayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.taxpayer.data.requests.DetailsRequest
 import com.example.taxpayer.data.requests.DetailsResponse
-import com.example.taxpayer.databinding.ActivityDisplayDataBinding
 import com.example.taxpayer.repositories.UserRepository
 import com.example.taxpayer.services.ServiceBuilder
 import com.example.taxpayer.services.TraService
@@ -21,7 +22,6 @@ class DisplayDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_data)
 
-        val binding = ActivityDisplayDataBinding.inflate(layoutInflater)
         val nida : Int = intent.getIntExtra("NIDA_ID",0)
 
         //get the details
@@ -31,8 +31,14 @@ class DisplayDataActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<DetailsResponse>, response: Response<DetailsResponse>) {
                     Log.d("DISPLAY_ACTIVITY success",response.body().toString())
 
+                    if(response.body()?.tra_account === null){
+                        findViewById<LinearLayout>(R.id.dataLayout).visibility = View.GONE
+                        findViewById<TextView>(R.id.tvw_no_record).visibility = View.VISIBLE
+                    }
+
                     val name :String = response.body()?.user?.get("first_name").toString() + response.body()?.user?.get("last_name")
                     val nida : String = response.body()?.user?.get("nida_number").toString()
+
                     val tin : String = response.body()?.tra_account?.get("tin_number").toString()
                     Log.d("DISPLAY_ACTIVITY TIN",tin)
                     val tin_created : String = response.body()?.tra_account?.get("created_at").toString()
